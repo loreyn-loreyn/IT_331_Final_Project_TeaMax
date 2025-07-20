@@ -1,0 +1,64 @@
+name: TeaMax
+description: A new Flutter project.
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.0.0
+
+dependencies:
+  flutter:
+    sdk: flutter
+  image_picker: ^1.1.2
+  permission_handler: ^11.3.1
+  shared_preferences: ^2.5.3
+  path_provider: ^2.1.5
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+
+
+flutter:
+  uses-material-design: true
+  assets:
+   - assets/Tea_Max_Logo.jpg
+   - assets/coffee1.jpeg
+   - assets/coffee2.jpeg
+   - assets/coffee3.jpeg
+   - assets/coffee4.jpeg
+   - assets/coffee5.jpeg
+   - assets/coffee6.jpeg
+   - assets/coffee7.jpeg
+   - assets/coffee8.jpeg
+   - assets/coffee9.jpeg
+   - assets/coffee10.jpeg
+   - assets/tart.jpg
+   - assets/croissant.jpg
+   - assets/pie.jpg
+
+  fonts:
+     - family: BitcountGridDouble_Cursive-Light
+       fonts:
+         - asset: assets/BitcountGridDouble_Cursive-Light.ttf
+
+     - family: EBGaramond-MediumItalic
+       fonts:
+         - asset: assets/EBGaramond-MediumItalic.ttf
+     - family: EBGaramond-Medium
+       fonts:
+         - asset: assets/EB_Garamond/static/EBGaramond-Medium.ttf
+
+     - family: DancingScript-VariableFont_wght
+       fonts:
+         - asset: assets/Dancing_Script/DancingScript-VariableFont_wght.ttf
+
+  #       - asset: fonts/Schyler-Italic.ttf
+  #         style: italic
+  #   - family: Trajan Pro
+  #     fonts:
+  #       - asset: fonts/TrajanPro.ttf
+  #       - asset: fonts/TrajanPro_Bold.ttf
+  #         weight: 700
