@@ -33,12 +33,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Tea Max Login',
+      title: 'Tea Max App',
       theme: ThemeData(
         brightness: Brightness.light,
         primarySwatch: Colors.brown,
         scaffoldBackgroundColor: Colors.white,
-        appBarTheme: AppBarTheme(
+        fontFamily: 'EBGaramond-Medium',
+        appBarTheme: const AppBarTheme(
           backgroundColor: teaMaxBrown,
           foregroundColor: Colors.white,
         ),
@@ -48,9 +49,11 @@ class MyApp extends StatelessWidget {
             foregroundColor: Colors.white,
           ),
         ),
+        useMaterial3: true,
         textTheme: const TextTheme(
           bodyLarge: TextStyle(color: Colors.brown),
-          bodyMedium: TextStyle(color: Colors.brown),
+          bodyMedium:
+              TextStyle(color: Colors.brown, fontFamily: 'EBGaramond-Medium'),
         ),
       ),
       home: const LoginPage(),
@@ -114,13 +117,14 @@ class LoginState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xFFF5F5DC),
       appBar: AppBar(
         backgroundColor: teaMaxBrown,
         title: const Row(
           children: [
             CircleAvatar(
               radius: 16,
-              backgroundImage: AssetImage('Tea_Max_Logo.jpg'),
+              backgroundImage: AssetImage('teaMax_Logo.jpg'),
             ),
             SizedBox(width: 10),
             Text("Tea Max"),
@@ -217,7 +221,6 @@ class LoginState extends State<LoginPage> {
           ),
         ),
       ),
-      backgroundColor: const Color(0xFFF5F5DC), // Very light beige background
     );
   }
 }
