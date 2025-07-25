@@ -17,32 +17,37 @@ class SignUpPageState extends State<SignUpPage> {
   String emailOrPhone = '';
   String password = '';
 
-  // Regular expressions for validation
+  // Error message holders for custom validations
+  String? emailOrPhoneError;
+  String? passwordError;
+
+  // Regular expressions
   final RegExp emailRegex = RegExp(r"^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$");
   final RegExp phoneRegex = RegExp(r"^(09|\+639)\d{9}$");
-  final RegExp nameRegex = RegExp(r'^[a-zA-Z]+$');
+  final RegExp nameRegex = RegExp(r'^[A-Za-z]+(?: [A-Za-z]+){0,2}$');
 
   void submit() {
+    setState(() {
+      emailOrPhoneError = null;
+      passwordError = null;
+    });
+
     if (!formKey.currentState!.validate()) return;
     formKey.currentState!.save();
 
-    // Check if password is same as email or contact
     if (password.trim() == emailOrPhone.trim()) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-            content:
-                Text("Password cannot be the same as your email or contact.")),
-      );
+      setState(() {
+        passwordError = 'Password cannot be the same as your email or contact.';
+      });
       return;
     }
 
-    // Check uniqueness of email or phone
     final exists = registeredUsers
         .any((user) => user.emailOrContact == emailOrPhone.trim());
     if (exists) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text("Email or phone already registered!")),
-      );
+      setState(() {
+        emailOrPhoneError = 'Email or phone already registered.';
+      });
       return;
     }
 
@@ -77,7 +82,7 @@ class SignUpPageState extends State<SignUpPage> {
           children: [
             CircleAvatar(
               radius: 16,
-              backgroundImage: AssetImage('Tea_Max_Logo.jpg'),
+              backgroundImage: AssetImage('teaMax_Logo.jpg'),
             ),
             SizedBox(width: 10),
             Text("Tea Max"),
@@ -118,9 +123,11 @@ class SignUpPageState extends State<SignUpPage> {
                 TextFormField(
                   decoration: const InputDecoration(labelText: 'First Name'),
                   validator: (input) {
-                    if (input == null || input.isEmpty) return 'Required';
-                    if (!nameRegex.hasMatch(input)) {
-                      return 'Only letters allowed';
+                    if (input == null || input.trim().isEmpty) {
+                      return 'Required';
+                    }
+                    if (!nameRegex.hasMatch(input.trim())) {
+                      return 'Letters only';
                     }
                     return null;
                   },
@@ -129,9 +136,11 @@ class SignUpPageState extends State<SignUpPage> {
                 TextFormField(
                   decoration: const InputDecoration(labelText: 'Last Name'),
                   validator: (input) {
-                    if (input == null || input.isEmpty) return 'Required';
-                    if (!nameRegex.hasMatch(input)) {
-                      return 'Only letters allowed';
+                    if (input == null || input.trim().isEmpty) {
+                      return 'Required';
+                    }
+                    if (!nameRegex.hasMatch(input.trim())) {
+                      return 'Letters only';
                     }
                     return null;
                   },
@@ -143,19 +152,17 @@ class SignUpPageState extends State<SignUpPage> {
                   validator: (input) {
                     if (input == null || input.isEmpty) return 'Required';
                     final parsedAge = int.tryParse(input);
-                    if (parsedAge == null) {
-                      return 'Enter a valid number';
-                    }
-                    if (parsedAge > 100) {
-                      return 'Age must not exceed 100';
-                    }
+                    if (parsedAge == null) return 'Enter a valid number';
+                    if (parsedAge > 100) return 'Age must not exceed 100';
                     return null;
                   },
                   onSaved: (val) => age = val!,
                 ),
                 TextFormField(
-                  decoration:
-                      const InputDecoration(labelText: 'Email or Phone'),
+                  decoration: InputDecoration(
+                    labelText: 'Email or Phone',
+                    errorText: emailOrPhoneError,
+                  ),
                   validator: (input) {
                     if (input == null || input.isEmpty) return 'Required';
                     final trimmed = input.trim();
@@ -168,17 +175,24 @@ class SignUpPageState extends State<SignUpPage> {
                   onSaved: (val) => emailOrPhone = val!,
                 ),
                 TextFormField(
-                  decoration: const InputDecoration(labelText: 'Password'),
+                  decoration: InputDecoration(
+                    labelText: 'Password',
+                    errorText: passwordError,
+                  ),
                   obscureText: true,
-                  validator: (input) =>
-                      input == null || input.isEmpty ? 'Required' : null,
+                  validator: (input) {
+                    if (input == null || input.isEmpty) return 'Required';
+                    if (input.length < 8) return 'Minimum 8 characters';
+                    return null;
+                  },
                   onSaved: (val) => password = val!,
                 ),
                 const SizedBox(height: 20),
                 ElevatedButton(
                   onPressed: submit,
-                  style:
-                      ElevatedButton.styleFrom(backgroundColor: Colors.brown),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.brown,
+                  ),
                   child: const Text("Sign Up"),
                 ),
               ],
