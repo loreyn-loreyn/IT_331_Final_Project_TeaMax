@@ -1,7 +1,9 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 import 'dart:io';
-import 'package:TeaMax/Final_Project_IT_331/mainLogin.dart';
-import 'package:TeaMax/Final_Project_IT_331/colors.dart';
+import 'package:tea_max/Final_Project_IT_331/mainLogin.dart';
+import 'package:tea_max/Final_Project_IT_331/colors.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:convert';
 
@@ -139,7 +141,7 @@ class _ReviewTabState extends State<Reviews> {
         title: const Text(
           'Customer Reviews',
           style: TextStyle(
-            fontFamily: 'Belleza',
+            fontFamily: 'EBGaramond-Medium',
             fontSize: 24,
             color: Colors.black,
           ),
@@ -159,7 +161,7 @@ class _ReviewTabState extends State<Reviews> {
                     const Text(
                       'How was your tea?',
                       style: TextStyle(
-                        fontFamily: 'Belleza',
+                        fontFamily: 'EBGaramond-Medium',
                         fontSize: 20,
                         color: Colors.black87,
                       ),
@@ -176,11 +178,11 @@ class _ReviewTabState extends State<Reviews> {
               TextField(
                 controller: _commentController,
                 maxLines: 4,
-                style: const TextStyle(fontFamily: 'Alegreya'),
+                style: const TextStyle(fontFamily: 'EBGaramond-Medium'),
                 decoration: InputDecoration(
                   hintText: 'Leave a review...',
                   hintStyle: const TextStyle(
-                      fontFamily: 'Alegreya', color: Colors.grey),
+                      fontFamily: 'tea_max', color: Colors.grey),
                   filled: true,
                   fillColor: Colors.white,
                   contentPadding:
@@ -211,7 +213,7 @@ class _ReviewTabState extends State<Reviews> {
                   child: const Text(
                     'Submit Review',
                     style: TextStyle(
-                      fontFamily: 'Belleza',
+                      fontFamily: 'EBGaramond-Medium',
                       fontSize: 16,
                     ),
                   ),
@@ -223,7 +225,7 @@ class _ReviewTabState extends State<Reviews> {
               const Text(
                 'What others are saying:',
                 style: TextStyle(
-                  fontFamily: 'Belleza',
+                  fontFamily: 'EBGaramond-Medium',
                   fontSize: 20,
                   color: Colors.black87,
                 ),
@@ -238,7 +240,7 @@ class _ReviewTabState extends State<Reviews> {
                       child: Center(
                         child: Text(
                           'No reviews yet.',
-                          style: TextStyle(fontFamily: 'Alegreya'),
+                          style: TextStyle(fontFamily: 'EBGaramond-Medium'),
                         ),
                       ),
                     )
