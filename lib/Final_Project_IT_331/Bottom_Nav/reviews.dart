@@ -2,8 +2,8 @@
 
 import 'package:flutter/material.dart';
 import 'dart:io';
-import 'package:tea_max/Final_Project_IT_331/mainLogin.dart';
-import 'package:tea_max/Final_Project_IT_331/colors.dart';
+import 'package:TeaMax/Final_Project_IT_331/mainLogin.dart';
+import 'package:TeaMax/Final_Project_IT_331/colors.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:convert';
 
